@@ -1,5 +1,5 @@
 
-export const blockType = Object.freeze({
+const blockType = Object.freeze({
     SQUARE: 'square',
     RECTANGLE_HORIZONTAL: 'rectangleHorizontal',
     RECTANGLE_VERTICAL: 'rectangleVertical',

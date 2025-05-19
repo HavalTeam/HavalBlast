@@ -1,7 +1,4 @@
-import Block from './block.js';
-import { blockType } from '../utils/enums.js';
-
-export default class LBlock extends Block {
+class LBlock extends Block {
     constructor(gm) {
         super(gm);
         this.type = blockType.L;

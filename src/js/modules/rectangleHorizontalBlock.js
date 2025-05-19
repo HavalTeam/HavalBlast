@@ -1,7 +1,4 @@
-import Block from './block.js';
-import { blockType } from '../utils/enums.js';
-
-export default class RactangleHorizontalBlock extends Block {
+class RactangleHorizontalBlock extends Block {
     constructor(gm) {
         super(gm);
         this.type = blockType.RECTANGLE_HORIZONTAL;

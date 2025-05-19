@@ -1,6 +1,4 @@
-import { blockType } from '../utils/enums.js';
-
-export default class Map {
+class Map {
     constructor() {
         this._cellsStateMatrix = [];
         this.grid = document.getElementById('grid-container');

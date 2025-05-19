@@ -1,7 +1,4 @@
-import Block from './block.js';
-import { blockType } from '../utils/enums.js';
-
-export default class LReverseBlock extends Block {
+class LReverseBlock extends Block {
     constructor(gm) {
         super(gm);
         this.type = blockType.L_REVERSE;

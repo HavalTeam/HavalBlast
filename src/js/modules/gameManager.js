@@ -1,18 +1,8 @@
-import Map from './map.js';
-import SquareBlock from './squareBlock.js';
-import RectangleHorizontalBlock from './rectangleHorizontalBlock.js';
-import RactangleVerticalBlock from './rectangleVerticalBlock.js';
-import CubeBlock from './cubeBlock.js';
-import LBlock from './LBlock.js';
-import LReverseBlock from './LReverseBlock.js';
-import GBlock from './GBlock.js';
-import GReverseBlock from './GReverseBlock.js';
-
-export default class GameManager {
+class GameManager {
     constructor() {
         this._map = new Map(); 
         this.selected = null;
-        this._blocksClasses = [SquareBlock, RectangleHorizontalBlock, RactangleVerticalBlock, 
+        this._blocksClasses = [SquareBlock, RactangleHorizontalBlock, RactangleVerticalBlock, 
             CubeBlock, LBlock, LReverseBlock, GReverseBlock, GBlock];
         this._handCounter = 0;
 

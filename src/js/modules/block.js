@@ -1,4 +1,4 @@
-export default class Block {
+class Block {
     constructor(gm) {
         this.blocksContainer = document.getElementById('blocks-container');
         this.blockDiv = document.createElement('div');

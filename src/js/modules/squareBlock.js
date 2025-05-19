@@ -1,7 +1,4 @@
-import Block from './block.js';
-import { blockType } from '../utils/enums.js';
-
-export default class SquareBlock extends Block {
+class SquareBlock extends Block {
     constructor(gm) {
         super(gm);
         this.type = blockType.SQUARE;

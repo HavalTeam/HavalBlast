@@ -1,5 +1,3 @@
-import GameManager from "./modules/gameManager.js";
-
 const gm = new GameManager();
 
 
