@@ -1,4 +1,3 @@
-
 const blockType = Object.freeze({
     SQUARE: 'square',
     RECTANGLE_HORIZONTAL: 'rectangleHorizontal',
@@ -8,5 +7,25 @@ const blockType = Object.freeze({
     L_REVERSE: 'lReverse',
     G: 'g',
     G_REVERSE: 'gReverse',
+    D: 'd',
+    T: 't',
+    RICKY: 'ricky',
+    RICKY_REVERSE: 'rickyReverse',
+    RICKY_UPSIDE_DOWN: 'rickyUpsideDown',
+    RICKY_REVERSE_UPSIDE_DOWN: 'rickyReverseUpsideDown',
+    Z: 'z',
+    S: 's',
+    Z_UPSIDE_DOWN: 'zUpsideDown',
+    S_UPSIDE_DOWN: 'sUpsideDown',
+    LEFT_BOTTOM: 'leftBottom',
+    RIGHT_BOTTOM: 'rightBottom',
+    LEFT_TOP: 'leftTop',
+    RIGHT_TOP: 'rightTop',
+    THREE_COL: 'threeCol',
+    FOUR_COL: 'fourCol',
+    FIVE_COL: 'fiveCol',
+    THREE_ROW: 'threeRow',
+    FOUR_ROW: 'fourRow',
+    FIVE_ROW: 'fiveRow',
 })
 

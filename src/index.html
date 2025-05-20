@@ -1,36 +1,40 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haval Blast!</title>
-    
+
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <div id="window-container">
-        <div id="grid-container">
-
-        </div>
-
-        <div id="blocks-container">
+    <div id="menu-bg">
+        <div class="menu-items-wrapper">
+            <img class="logo" src="images/logo.png">
+            <div class="menu-items">
+                <button class="menu-btn start-game-btn">Начать игру</button>
+                <button class="menu-btn stat-btn">Рекорды</button>
+                <button class="menu-btn help-btn">Как играть?</button>
+            </div>
         </div>
     </div>
 
-    <script src="./js/utils/enums.js"></script>
-    <script src="./js/modules/block.js"></script>
+    <div id="help-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
 
-    <script src="./js/modules/squareBlock.js"></script>
-    <script src="./js/modules/rectangleHorizontalBlock.js"></script>
-    <script src="./js/modules/rectangleVerticalBlock.js"></script>
-    <script src="./js/modules/cubeBlock.js"></script>
-    <script src="./js/modules/LBlock.js"></script>
-    <script src="./js/modules/LReverseBlock.js"></script>
-    <script src="./js/modules/GBlock.js"></script>
-    <script src="./js/modules/GReverseBlock.js"></script>
+    <div id="records-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h2>Рекорды</h2>
+            <p>Лучший счет: <span id="high-score">0</span></p>
+        </div>
+    </div>
 
-    <script src="./js/modules/map.js"></script>
-    <script src="./js/modules/gameManager.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="js/menu.js"></script>
 </body>
 </html>

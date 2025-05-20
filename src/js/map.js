@@ -16,84 +16,31 @@ class Map {
     }
     
 
-    canPlace(type, x, y, sizeX, sizeY, color) {
+    canPlace(block, x, y, sizeX, sizeY, color) {
         const [nearestCellRect, cellJ, cellI] = this._findNearestCell(x, y, sizeX, sizeY);
         if (nearestCellRect === null) {
             return false;
         }
         
-        let coords;
-        switch (type) {
-            case blockType.SQUARE:
-                coords = [[cellJ, cellI], [cellJ + 1, cellI],
-            [cellJ, cellI + 1], [cellJ + 1, cellI + 1]];
-
-                return this._placedBlock(coords, color);
-            
-            case blockType.RECTANGLE_HORIZONTAL:
-                coords = [[cellJ, cellI], [cellJ + 1, cellI], [cellJ + 2, cellI],
-                [cellJ, cellI + 1], [cellJ + 1, cellI + 1], [cellJ + 2, cellI + 1]];
-                
-                return this._placedBlock(coords, color);
-
-            
-            case blockType.RECTANGLE_VERTICAL:
-                coords = [[cellJ, cellI], [cellJ + 1, cellI],
-                [cellJ, cellI + 1], [cellJ + 1, cellI + 1],
-                [cellJ, cellI + 2], [cellJ + 1, cellI + 2],];
-                
-                return this._placedBlock(coords, color);
-
-
-
-            case blockType.CUBE:
-                coords = [[cellJ, cellI], [cellJ + 1, cellI], [cellJ + 2, cellI],
-                [cellJ, cellI + 1], [cellJ + 1, cellI + 1], [cellJ + 2, cellI + 1],
-                [cellJ, cellI + 2], [cellJ + 1, cellI + 2], [cellJ + 2, cellI + 2]];
-
-                return this._placedBlock(coords, color);
-
-
-            case blockType.L:
-                coords = [[cellJ, cellI],
-                [cellJ, cellI + 1],
-                [cellJ, cellI + 2], [cellJ + 1, cellI + 2]];
-
-                return this._placedBlock(coords, color);
-
-
-            case blockType.L_REVERSE:
-                coords = [[cellJ + 1, cellI],
-                [cellJ + 1, cellI + 1],
-                [cellJ, cellI + 2], [cellJ + 1, cellI + 2]];
-
-                return this._placedBlock(coords, color);
-
-
-            case blockType.G:
-                coords = [[cellJ, cellI], [cellJ + 1, cellI],
-                [cellJ, cellI + 1],
-                [cellJ, cellI + 2]];
-
-                return this._placedBlock(coords, color);
-
-
-            case blockType.G_REVERSE:
-                coords = [[cellJ, cellI], [cellJ + 1, cellI],
-                [cellJ + 1, cellI + 1],
-                [cellJ + 1, cellI + 2]];
-
-                return this._placedBlock(coords, color);
-
-
-            default:
-                console.log('unknown type');
-                return false;
-        }
-  
+        const coords = block.getBlockCoords(cellJ, cellI);
+        return this._placedBlock(block, coords, color);
     }
 
-    _placedBlock(coords, color) {
+    checkGameOver(handBlocks) {
+        for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                for (let handBlock of handBlocks) {
+                    const cords = handBlock.getBlockCoords(j, i);
+                    if (this._checkEmptyPlace(cords)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    _placedBlock(block, coords, color) {
         if (this._checkEmptyPlace(coords)) {
             for (let [j, i] of coords) {
                 this._occupyCell(j, i, color);
@@ -137,7 +84,7 @@ class Map {
         return true;
     }
 
-
+    
     _occupyCell(x, y, color) {
         this._cellsStateMatrix[y][x] = 1;
         const cell = document.getElementById(`cell-${x}-${y}`);
@@ -154,7 +101,7 @@ class Map {
         
         for (let [x, y] of toClear) {
             this._cellsStateMatrix[y][x] = 0;
-            document.getElementById(`cell-${x}-${y}`).style.backgroundColor = '#3e7769';
+            document.getElementById(`cell-${x}-${y}`).style.backgroundColor = 'rgb(30, 42, 77)';
             setTimeout(() => {
                 document.getElementById(`cell-${x}-${y}`).classList.remove('building-block-grid');
             }, 100);
