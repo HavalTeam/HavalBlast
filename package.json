@@ -18,7 +18,9 @@
   "homepage": "https://github.com/HavalTeam/HavalBlast#readme",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "pg": "^8.16.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
