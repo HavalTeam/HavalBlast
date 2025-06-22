@@ -5,7 +5,7 @@ class FiveRowBlock extends Block {
         this.sizeX = 50 * 5;
         this.sizeY = 50;
 
-        this.blockDiv.classList.add('five-row-block');
+        this.blockDiv.classList.add('five-one-block');
         this.spawnBlock(5);
     }
 
@@ -13,7 +13,6 @@ class FiveRowBlock extends Block {
         super._addBuildingBlocks(amount);
         const blocks = this.blockDiv.children;
         
-        // Располагаем блоки горизонтально
         blocks[0].style.gridColumn = '1';
         blocks[0].style.gridRow = '1';
         

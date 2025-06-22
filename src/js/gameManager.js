@@ -66,7 +66,7 @@ class GameManager {
 
 
     canLand(block) {
-        return this._map.canPlace(block, block.x, block.y, block.sizeX, block.sizeY, block.blockColor);
+        return this._map.canPlace(block, block.x, block.y, block.sizeX, block.sizeY, block.blockColors);
     }
 
     checkGameOver() {
@@ -88,7 +88,6 @@ class GameManager {
 
     addScore(points) {
         this.score += points;
-        // Проверяем и обновляем лучший счет
         const currentHighScore = parseInt(localStorage.getItem('highScore')) || 0;
         if (this.score > currentHighScore) {
             localStorage.setItem('highScore', this.score);

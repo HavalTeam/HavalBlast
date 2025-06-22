@@ -5,7 +5,7 @@ class ThreeColBlock extends Block {
         this.sizeX = 50;
         this.sizeY = 50 * 3;
 
-        this.blockDiv.classList.add('three-col-block');
+        this.blockDiv.classList.add('one-three-block');
         this.spawnBlock(3);
     }
 
@@ -13,7 +13,6 @@ class ThreeColBlock extends Block {
         super._addBuildingBlocks(amount);
         const blocks = this.blockDiv.children;
         
-        // Располагаем блоки вертикально
         blocks[0].style.gridColumn = '1';
         blocks[0].style.gridRow = '1';
         

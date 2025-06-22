@@ -5,7 +5,7 @@ class ThreeRowBlock extends Block {
         this.sizeX = 50 * 3;
         this.sizeY = 50;
 
-        this.blockDiv.classList.add('three-row-block');
+        this.blockDiv.classList.add('three-one-block');
         this.spawnBlock(3);
     }
 
@@ -13,7 +13,6 @@ class ThreeRowBlock extends Block {
         super._addBuildingBlocks(amount);
         const blocks = this.blockDiv.children;
         
-        // Располагаем блоки горизонтально
         blocks[0].style.gridColumn = '1';
         blocks[0].style.gridRow = '1';
         

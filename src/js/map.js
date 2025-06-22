@@ -16,14 +16,14 @@ class Map {
     }
     
 
-    canPlace(block, x, y, sizeX, sizeY, color) {
+    canPlace(block, x, y, sizeX, sizeY, colors) {
         const [nearestCellRect, cellJ, cellI] = this._findNearestCell(x, y, sizeX, sizeY);
         if (nearestCellRect === null) {
             return false;
         }
         
         const coords = block.getBlockCoords(cellJ, cellI);
-        return this._placedBlock(block, coords, color);
+        return this._placedBlock(block, coords, colors);
     }
 
     checkGameOver(handBlocks) {
@@ -40,10 +40,10 @@ class Map {
         return true;
     }
 
-    _placedBlock(block, coords, color) {
+    _placedBlock(block, coords, colors) {
         if (this._checkEmptyPlace(coords)) {
             for (let [j, i] of coords) {
-                this._occupyCell(j, i, color);
+                this._occupyCell(j, i, colors);
             }
             this._clearIfCan();
             return true;
@@ -85,11 +85,18 @@ class Map {
     }
 
     
-    _occupyCell(x, y, color) {
+    _occupyCell(x, y, colors) {
         this._cellsStateMatrix[y][x] = 1;
         const cell = document.getElementById(`cell-${x}-${y}`);
+        cell.style.borderWidth = '10px';
         cell.classList.add('building-block-grid');
-        cell.style.backgroundColor = color;
+
+        cell.style.backgroundColor = colors.bodyColor;
+        cell.style.borderBottomColor = colors.bottomBorderColor;
+        cell.style.borderRightColor = colors.rightBorderColor;
+        cell.style.borderLeftColor = colors.leftBorderColor;
+        cell.style.borderTopColor = colors.topBorderColor;
+
     }
 
 
@@ -101,9 +108,13 @@ class Map {
         
         for (let [x, y] of toClear) {
             this._cellsStateMatrix[y][x] = 0;
-            document.getElementById(`cell-${x}-${y}`).style.backgroundColor = 'rgb(30, 42, 77)';
+            const cell = document.getElementById(`cell-${x}-${y}`);
+            cell.style.backgroundColor = 'rgb(30, 42, 77)';
+
             setTimeout(() => {
-                document.getElementById(`cell-${x}-${y}`).classList.remove('building-block-grid');
+                cell.classList.remove('building-block-grid');
+                cell.style.borderWidth = '1px';
+                cell.style.borderColor = 'rgba(0, 0, 0, 0.266)';
             }, 100);
         }
 

@@ -5,7 +5,7 @@ class FourColBlock extends Block {
         this.sizeX = 50;
         this.sizeY = 50 * 4;
 
-        this.blockDiv.classList.add('four-col-block');
+        this.blockDiv.classList.add('one-four-block');
         this.spawnBlock(4);
     }
 
@@ -13,7 +13,6 @@ class FourColBlock extends Block {
         super._addBuildingBlocks(amount);
         const blocks = this.blockDiv.children;
         
-        // Располагаем блоки вертикально
         blocks[0].style.gridColumn = '1';
         blocks[0].style.gridRow = '1';
         

@@ -5,7 +5,7 @@ class LReverseBlock extends Block {
         this.sizeX = 50 * 2;
         this.sizeY = 50 * 3;
         
-        this.blockDiv.classList.add('l-reverse-block')
+        this.blockDiv.classList.add('l-block', 'reverse')
         this.spawnBlock(4);
     }
 

@@ -5,7 +5,7 @@ class GReverseBlock extends Block {
         this.sizeX = 50 * 2;
         this.sizeY = 50 * 3;
         
-        this.blockDiv.classList.add('g-reverse-block')
+        this.blockDiv.classList.add('g-block', 'reverse');
         this.spawnBlock(4);
     }
 

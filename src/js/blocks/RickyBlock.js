@@ -5,7 +5,7 @@ class RickyBlock extends Block {
         this.sizeX = 50 * 3;
         this.sizeY = 50 * 2;
 
-        this.blockDiv.classList.add('ricky-block');
+        this.blockDiv.classList.add('three-two-block');
         this.spawnBlock(4);
     }
 
@@ -13,7 +13,6 @@ class RickyBlock extends Block {
         super._addBuildingBlocks(amount);
         const blocks = this.blockDiv.children;
         
-        // Располагаем блоки в форме буквы R
         blocks[0].style.gridColumn = '3';
         blocks[0].style.gridRow = '1';
         

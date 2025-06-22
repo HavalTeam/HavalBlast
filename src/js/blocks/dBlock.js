@@ -5,7 +5,7 @@ class DBlock extends Block {
         this.sizeX = 50 * 3;
         this.sizeY = 50 * 2;
 
-        this.blockDiv.classList.add('d-block');
+        this.blockDiv.classList.add('three-two-block');
         this.spawnBlock(4);
     }
 
@@ -13,7 +13,6 @@ class DBlock extends Block {
         super._addBuildingBlocks(amount);
         const blocks = this.blockDiv.children;
         
-        // Располагаем блоки в форме точки с тремя точками под ней
         blocks[0].style.gridColumn = '2';
         blocks[0].style.gridRow = '1';
         

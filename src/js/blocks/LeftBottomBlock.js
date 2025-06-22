@@ -5,7 +5,7 @@ class LeftBottomBlock extends Block {
         this.sizeX = 50 * 3;
         this.sizeY = 50 * 3;
 
-        this.blockDiv.classList.add('left-bottom-block');
+        this.blockDiv.classList.add('three-three-block');
         this.spawnBlock(5);
     }
 
@@ -13,7 +13,6 @@ class LeftBottomBlock extends Block {
         super._addBuildingBlocks(amount);
         const blocks = this.blockDiv.children;
         
-        // Располагаем блоки в форме буквы Г
         blocks[0].style.gridColumn = '1';
         blocks[0].style.gridRow = '1';
         

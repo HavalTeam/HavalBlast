@@ -51,13 +51,14 @@ body {
     height: 50px;
     z-index: 1;
     background-color: #f87575;
-    border: solid 1px rgba(0, 0, 0, 0.266);
+    border: solid 10px rgba(0, 0, 0, 0.266);
 }
 
 .building-block-grid {
     z-index: 1;
     background-color: #f87575;
-    border: solid 1px rgba(0, 0, 0, 0.266);
+    border: solid 10px rgba(0, 0, 0, 0.266);
+    
 }
 
 .square-block {
@@ -88,14 +89,6 @@ body {
     height: 150px;
 }
 
-.l-reverse-block {
-    display: flex;
-    flex-direction: column-reverse;
-    flex-wrap: wrap-reverse;
-    width: 100px;
-    height: 150px;
-}
-
 .g-block {
     display: flex;
     flex-direction: column;
@@ -104,15 +97,7 @@ body {
     height: 150px;
 }
 
-.g-reverse-block {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap-reverse;
-    width: 100px;
-    height: 150px;
-}
-
-.d-block {
+.three-two-block {
     display: grid;
     grid-template-columns: repeat(3, 50px);
     grid-template-rows: repeat(2, 50px);
@@ -121,70 +106,7 @@ body {
     height: 100px;
 }
 
-.t-block {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(2, 50px);
-    gap: 0;
-    width: 150px;
-    height: 100px;
-}
-
-.ricky-block {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(2, 50px);
-    gap: 0;
-    width: 150px;
-    height: 100px;
-}
-
-.ricky-reverse-block {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(2, 50px);
-    gap: 0;
-    width: 150px;
-    height: 100px;
-}
-
-.ricky-upside-down-block {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(2, 50px);
-    gap: 0;
-    width: 150px;
-    height: 100px;
-}
-
-.ricky-reverse-upside-down-block {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(2, 50px);
-    gap: 0;
-    width: 150px;
-    height: 100px;
-}
-
-.z-block {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(2, 50px);
-    gap: 0;
-    width: 150px;
-    height: 100px;
-}
-
-.s-block {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(2, 50px);
-    gap: 0;
-    width: 150px;
-    height: 100px;
-}
-
-.z-upside-down-block {
+.two-three-block {
     display: grid;
     grid-template-columns: repeat(2, 50px);
     grid-template-rows: repeat(3, 50px);
@@ -193,16 +115,7 @@ body {
     height: 150px;
 }
 
-.s-upside-down-block {
-    display: grid;
-    grid-template-columns: repeat(2, 50px);
-    grid-template-rows: repeat(3, 50px);
-    gap: 0;
-    width: 100px;
-    height: 150px;
-}
-
-.left-bottom-block {
+.three-three-block {
     display: grid;
     grid-template-columns: repeat(3, 50px);
     grid-template-rows: repeat(3, 50px);
@@ -211,34 +124,7 @@ body {
     height: 150px;
 }
 
-.right-bottom-block {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(3, 50px);
-    gap: 0;
-    width: 150px;
-    height: 150px;
-}
-
-.left-top-block {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(3, 50px);
-    gap: 0;
-    width: 150px;
-    height: 150px;
-}
-
-.right-top-block {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(3, 50px);
-    gap: 0;
-    width: 150px;
-    height: 150px;
-}
-
-.three-col-block {
+.one-three-block {
     display: grid;
     grid-template-columns: 50px;
     grid-template-rows: repeat(3, 50px);
@@ -247,7 +133,7 @@ body {
     height: 150px;
 }
 
-.four-col-block {
+.one-four-block {
     display: grid;
     grid-template-columns: 50px;
     grid-template-rows: repeat(4, 50px);
@@ -256,7 +142,7 @@ body {
     height: 200px;
 }
 
-.five-col-block {
+.one-five-block {
     display: grid;
     grid-template-columns: 50px;
     grid-template-rows: repeat(5, 50px);
@@ -265,7 +151,7 @@ body {
     height: 250px;
 }
 
-.three-row-block {
+.three-one-block {
     display: grid;
     grid-template-columns: repeat(3, 50px);
     grid-template-rows: 50px;
@@ -274,7 +160,7 @@ body {
     height: 50px;
 }
 
-.four-row-block {
+.four-one-block {
     display: grid;
     grid-template-columns: repeat(4, 50px);
     grid-template-rows: 50px;
@@ -283,13 +169,17 @@ body {
     height: 50px;
 }
 
-.five-row-block {
+.five-one-block {
     display: grid;
     grid-template-columns: repeat(5, 50px);
     grid-template-rows: 50px;
     gap: 0;
     width: 250px;
     height: 50px;
+}
+
+.reverse {
+    flex-wrap: wrap-reverse;
 }
 
 #menu-bg {

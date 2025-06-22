@@ -29,3 +29,15 @@ const blockType = Object.freeze({
     FIVE_ROW: 'fiveRow',
 })
 
+const blockColors = [
+    [160, 0, 241],
+    [1, 0, 242],
+    [240, 1, 2],
+    [249, 230, 9],
+    [2, 241, 1],
+    [239, 130, 1],
+    [2, 241, 243],
+]
+
+blockColors.forEach(arr => Object.freeze(arr));
+Object.freeze(blockColors);

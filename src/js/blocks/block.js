@@ -69,17 +69,39 @@ class Block {
 
 
     _addBuildingBlocks(amount) {
-        this.blockColor = this._getRandomColor();
+        this.blockColors = this._getRandomColor();
         for (let i = 0; i < amount; i++) {
             const buildingBlock = document.createElement('div');
             buildingBlock.classList.add('building-block');
-            buildingBlock.style.backgroundColor = this.blockColor;
+            
+            buildingBlock.style.backgroundColor = this.blockColors.bodyColor;
+            buildingBlock.style.borderBottomColor = this.blockColors.bottomBorderColor;
+            buildingBlock.style.borderRightColor = this.blockColors.rightBorderColor;
+            buildingBlock.style.borderLeftColor = this.blockColors.leftBorderColor;
+            buildingBlock.style.borderTopColor = this.blockColors.topBorderColor;
+
             this.blockDiv.appendChild(buildingBlock);
         }
     }
 
     _getRandomColor() {
-        return `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`
+        const mainColorRGB = blockColors[Math.floor(Math.random() * blockColors.length)];
         
+        const toCss = arr =>
+            `rgb(${arr.map(v => Math.round(v)).join(', ')})`;
+
+        const bodyColor = toCss(mainColorRGB);
+        const bottomBorderColor = toCss(mainColorRGB.map(x => Math.max(0, x - 60)));
+        const rightBorderColor = toCss(mainColorRGB.map(x => Math.max(0, x - 30)));
+        const leftBorderColor = toCss(mainColorRGB.map(x => Math.min(255, x + 30)));
+        const topBorderColor = toCss(mainColorRGB.map(x => Math.min(255, x + 70)));
+        
+        return {
+            bodyColor,
+            bottomBorderColor,
+            rightBorderColor,
+            leftBorderColor,
+            topBorderColor,
+        };
     }
 }

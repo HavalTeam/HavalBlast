@@ -5,7 +5,7 @@ class ZUpsideDownBlock extends Block {
         this.sizeX = 50 * 2;
         this.sizeY = 50 * 3;
 
-        this.blockDiv.classList.add('z-upside-down-block');
+        this.blockDiv.classList.add('two-three-block');
         this.spawnBlock(4);
     }
 
@@ -13,7 +13,6 @@ class ZUpsideDownBlock extends Block {
         super._addBuildingBlocks(amount);
         const blocks = this.blockDiv.children;
         
-        // Располагаем блоки в форме перевернутой буквы Z
         blocks[0].style.gridColumn = '2';
         blocks[0].style.gridRow = '1';
         
