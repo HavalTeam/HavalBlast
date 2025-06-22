@@ -1,6 +1,6 @@
 class RickyBlock extends Block {
-    constructor(gm) {
-        super(gm);
+    constructor(gm, forBg = false) {
+        super(gm, forBg);
         this.type = blockType.RICKY;
         this.sizeX = 50 * 3;
         this.sizeY = 50 * 2;

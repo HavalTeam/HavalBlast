@@ -1,6 +1,6 @@
 class FiveColBlock extends Block {
-    constructor(gm) {
-        super(gm);
+    constructor(gm, forBg = false) {
+        super(gm, forBg);
         this.type = blockType.FIVE_COL;
         this.sizeX = 50;
         this.sizeY = 50 * 5;

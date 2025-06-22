@@ -1,6 +1,6 @@
 class CubeBlock extends Block {
-    constructor(gm) {
-        super(gm);
+    constructor(gm, forBg = false) {
+        super(gm, forBg);
         this.type = blockType.CUBE;
         this.sizeX = 50 * 3;
         this.sizeY = 50 * 3;

@@ -1,6 +1,6 @@
 class FourRowBlock extends Block {
-    constructor(gm) {
-        super(gm);
+    constructor(gm, forBg = false) {
+        super(gm, forBg);
         this.type = blockType.FOUR_ROW;
         this.sizeX = 50 * 4;
         this.sizeY = 50;

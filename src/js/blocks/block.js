@@ -1,9 +1,16 @@
 class Block {
-    constructor(gm) {
-        this.blocksContainer = document.getElementById('blocks-container');
+    constructor(gm, forBg = false) {
+        
         this.blockDiv = document.createElement('div');
         this.blockDiv.setAttribute('draggable', 'false');
         this.blockDiv.addEventListener('dragstart', e => e.preventDefault());
+
+        if (forBg) {
+            this.blocksContainer = document.getElementById('bg-blocks-container');
+            return;
+        }
+
+        this.blocksContainer = document.getElementById('blocks-container');
         this.gm = gm;
 
         this.x = null;
@@ -12,6 +19,7 @@ class Block {
         this.blockDiv.addEventListener('mousedown', (event) => {
             this.blockDiv.style.position = 'absolute';
             this.blockDiv.style.zIndex = 2;
+            this.blockDiv.style.transform = 'scale(1)';
             this.gm.selected = this;
 
             const x = event.clientX;
@@ -56,6 +64,7 @@ class Block {
                 this.blockDiv.style.top = 'auto';
                 this.blockDiv.style.left = 'auto';
                 this.blockDiv.style.zIndex = 1;
+                this.blockDiv.style.transform = 'scale(0.75)';
             }
             this.gm.selected = null;
         });

@@ -1,13 +1,9 @@
 class GameManager {
-    constructor() {
-        this._map = new Map(); 
-        this.selected = null;
-        this.handBlocks = [];
-        this._blocksClasses = [
+    constructor(forBg = false) {
+
+        this.blocksClasses = [
             CubeBlock,
             DBlock,
-            FiveColBlock,
-            FiveRowBlock,
             FourColBlock,
             FourRowBlock,
             GBlock,
@@ -33,6 +29,15 @@ class GameManager {
             ZBlock,
             ZUpsideDownBlock
         ];
+
+        if (forBg) {
+            return;
+        }
+
+        this._map = new Map(); 
+        this.selected = null;
+        this.handBlocks = [];
+
         this._handCounter = 0;
         this.score = 0;
 
@@ -74,7 +79,7 @@ class GameManager {
     }
 
     _chooseRandomBlock() {
-        return this._blocksClasses[Math.floor(Math.random() * this._blocksClasses.length)];
+        return this.blocksClasses[Math.floor(Math.random() * this.blocksClasses.length)];
     }
 
     _fillHand() {

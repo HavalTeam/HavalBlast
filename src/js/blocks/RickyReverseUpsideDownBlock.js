@@ -1,6 +1,6 @@
 class RickyReverseUpsideDownBlock extends Block {
-    constructor(gm) {
-        super(gm);
+    constructor(gm, forBg = false) {
+        super(gm, forBg);
         this.type = blockType.RICKY_REVERSE_UPSIDE_DOWN;
         this.sizeX = 50 * 3;
         this.sizeY = 50 * 2;

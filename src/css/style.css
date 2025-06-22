@@ -12,6 +12,7 @@
 
 body {
     background: linear-gradient(rgb(59, 104, 227), rgb(37, 69, 154));
+    overflow: hidden;
 }
 
 #window-container {
@@ -26,7 +27,11 @@ body {
     display: grid;
     grid-template-columns: repeat(8, 50px);
     grid-template-rows: repeat(8, 50px);
-    margin-top: 5%;
+    border: solid 5px;
+    border-bottom-color: rgb(75, 94, 150);
+    border-right-color: rgb(59, 73, 122);
+    border-left-color: rgb(54, 72, 122);
+    border-top-color: rgb(43, 61, 111);;
 }
 
 .grid-item {
@@ -42,7 +47,13 @@ body {
     align-items: center;
     overflow: hidden;
     border-radius: 15px;
-    background-color: rgb(38, 71, 154);
+    /* background-color: rgb(38, 71, 154); */
+}
+
+/* Уменьшаем размер блоков в контейнере "руки" до 0.5 от исходного размера */
+#blocks-container > div {
+    transform: scale(0.75);
+    transform-origin: center;
 }
 
 .building-block {
@@ -142,15 +153,6 @@ body {
     height: 200px;
 }
 
-.one-five-block {
-    display: grid;
-    grid-template-columns: 50px;
-    grid-template-rows: repeat(5, 50px);
-    gap: 0;
-    width: 50px;
-    height: 250px;
-}
-
 .three-one-block {
     display: grid;
     grid-template-columns: repeat(3, 50px);
@@ -169,26 +171,15 @@ body {
     height: 50px;
 }
 
-.five-one-block {
-    display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: 50px;
-    gap: 0;
-    width: 250px;
-    height: 50px;
-}
-
 .reverse {
     flex-wrap: wrap-reverse;
 }
 
-#menu-bg {
+#main-menu {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
-
-    background: linear-gradient(rgb(59, 104, 227), rgb(37, 69, 154));
 }
 
 .menu-items-wrapper {
@@ -274,4 +265,15 @@ body {
     background-color: rgba(39, 13, 117, 0.8);
     border-radius: 10px;
     margin: 20px 0;
+}
+
+#bg-blocks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
 }

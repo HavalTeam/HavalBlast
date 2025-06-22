@@ -1,6 +1,6 @@
 class ZUpsideDownBlock extends Block {
-    constructor(gm) {
-        super(gm);
+    constructor(gm, forBg = false) {
+        super(gm, forBg);
         this.type = blockType.Z_UPSIDE_DOWN;
         this.sizeX = 50 * 2;
         this.sizeY = 50 * 3;

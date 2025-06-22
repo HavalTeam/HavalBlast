@@ -30,4 +30,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    window.gm = new GameManager(forBg = true);
 });

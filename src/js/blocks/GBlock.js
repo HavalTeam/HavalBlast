@@ -1,6 +1,6 @@
 class GBlock extends Block {
-    constructor(gm) {
-        super(gm);
+    constructor(gm, forBg = false) {
+        super(gm, forBg);
         this.type = blockType.G;
         this.sizeX = 50 * 2;
         this.sizeY = 50 * 3;
