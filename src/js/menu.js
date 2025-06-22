@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     highScoreElement.textContent = highScore;
 
     startGameBtn.addEventListener('click', () => {
-        window.location.href = 'gamePage.html';
+        window.location.href = 'game';
     });
 
     recordsBtn.addEventListener('click', () => {
