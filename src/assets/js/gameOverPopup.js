@@ -19,7 +19,7 @@ class GameOverPopup {
         document.getElementById('restart-game-btn')
             .addEventListener('click', () => window.location.reload());
         document.getElementById('go-to-menu-btn')
-            .addEventListener('click', () => window.location.href = 'index.html');
+            .addEventListener('click', () => window.location.href = '/');
 
 
 

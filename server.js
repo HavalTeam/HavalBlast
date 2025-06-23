@@ -4,9 +4,15 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, 'src'), {
-    extensions: ['html']
-}));
+app.use('/assets', express.static(path.join(__dirname, 'src', 'assets')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'index.html'));
+});
+
+app.get('/game', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'game.html'));
+});
 app.use(express.json())
 app.use('/api/users', require('./routes/users'));
 

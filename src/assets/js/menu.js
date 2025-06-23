@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     startGameBtn.addEventListener('click', () => {
-        window.location.href = 'game.html';
+        window.location.href = '/game';
     });
 
     recordsBtn.addEventListener('click', () => {
