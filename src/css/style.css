@@ -229,7 +229,6 @@ body {
 }
 
 .popup {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -237,17 +236,47 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+}
+
+.popup.show {
+    opacity: 1;
+    visibility: visible;
 }
 
 .popup-content {
     position: relative;
-    background-color: #fff;
-    margin: 15% auto;
+    background: linear-gradient(to bottom right, #3928bf 0%, #2b1e8b 100%);
+    margin: 2% auto;
     padding: 20px;
-    width: 70%;
-    max-width: 500px;
-    border-radius: 5px;
+    max-width: 40%;
+    border-radius: 15px;
     text-align: center;
+}
+
+.popup-content img {
+    width: 30%;
+    margin: 10% 0;
+}
+
+.popup-content h2 {
+    font-family: 'Rubic', serif;
+    font-size: 20px;
+    color:white
+}
+
+.popup-content .final-score {
+    font-family: 'Rubic', serif;
+    font-size: 18px;
+    color:white
+}
+
+.popup-content .best-score {
+    font-family: 'Rubic', serif;
+    font-size: 18px;
+    color:rgb(255, 174, 0)
 }
 
 .close-popup {
@@ -294,3 +323,4 @@ body {
 .line-clear {
     animation: lineClear 0.4s ease-out forwards;
 }
+

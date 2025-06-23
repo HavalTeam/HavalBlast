@@ -27,9 +27,12 @@
 
     <div id="game-over-popup" class="popup">
         <div class="popup-content">
-            <h2>Игра окончена!</h2>
-            <p>Ваш счет: <span id="final-score">0</span></p>
+            <h2>Игра окончена</h2>
+            <img src="./images/sad_tetris.png">
+            <p class="final-score">Ваш счет: <span id="final-score-num">0</span></p>
+            <p class="best-score">Лучший счет: <span id="best-score-num">0</span></p>
             <button id="restart-game-btn" class="menu-btn">Начать заново</button>
+            <button id="go-to-menu-btn" class="menu-btn">Главное меню</button>
         </div>
     </div>
 
@@ -64,6 +67,7 @@
     <script src="./js/blocks/ThreeRowBlock.js"></script>
     <script src="./js/blocks/FourRowBlock.js"></script>
 
+    <script src="./js/gameOverPopup.js"></script>
     <script src="./js/map.js"></script>
     <script src="./js/gameManager.js"></script>
     <script src="./js/backgroundAnimation.js"></script>

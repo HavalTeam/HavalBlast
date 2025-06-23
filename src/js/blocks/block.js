@@ -171,11 +171,7 @@ class Block {
 
 
     _showGameOver() {
-        const popup = document.getElementById('game-over-popup');
-        document.getElementById('final-score').textContent = this.gm.getScore();
-        popup.style.display = 'block';
-        document.getElementById('restart-game-btn')
-            .addEventListener('click', () => window.location.reload());
+        this.gm.gameOver();
     }
 
 

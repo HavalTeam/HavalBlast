@@ -102,4 +102,13 @@ class GameManager {
     getScore() {
         return this.score;
     }
+
+    getBestScore() {
+        return parseInt(localStorage.getItem('highScore')) || 0;
+    }
+
+    gameOver() {
+        const gameOverPopup = new GameOverPopup(this);
+        gameOverPopup.showPopup();
+    }
 }
