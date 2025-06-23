@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('gm:ready', async () => {
     const CLASSES = gm.blocksClasses;
     const forMenu = document.getElementById('main-menu');
     function spawnBg() {
