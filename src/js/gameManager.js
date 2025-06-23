@@ -108,6 +108,11 @@ class GameManager {
     }
 
     gameOver() {
+        fetch('/api/users/addRecord', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name: userName, record: this.getScore()}),
+        }).then(response => {})
         const gameOverPopup = new GameOverPopup(this);
         gameOverPopup.showPopup();
     }
