@@ -1,34 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const {
-    createUser,
-    addRecordToUser,
+    createUserWithRecord,
     getTop10,
     getRecordByName,
     getUserRank,
 } = require('../queries');
 
-router.post('/addUser', async (req, res) => {
-    try {
-        const { name } = req.body;
-        if (!name) {
-            return res.status(400).json({ error: 'Name is required' });
-        }
-        const user = await createUser(name);
-        res.status(201).json(user);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Server error' });
-    }
-});
-
-router.put('/addRecord', async (req, res) => {
+router.put('/addUser', async (req, res) => {
     try {
         const { name, record } = req.body;
         if (!name || !record) {
             return res.status(400).json({ error: 'Name and record is required' });
         }
-        const user = await addRecordToUser(name, record);
+        const user = await createUserWithRecord(name, record);
         res.json(user);
     } catch (err) {
         console.error(err);

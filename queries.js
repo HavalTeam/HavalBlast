@@ -9,17 +9,10 @@ const pool = new Pool({
     port: process.env.DB_PORT || 5432
 });
 
-async function createUser(name) {
-    const text = 'INSERT INTO users(name) VALUES($1) RETURNING *';
-    const values = [name];
-    const res = await pool.query(text, values);
-    return res.rows[0];
-}
-
-async function addRecordToUser(name, record) {
-    const text = `UPDATE users SET record = $1 WHERE name = $2 RETURNING *`;
-    const values = [record, name];
-    const res = await pool.query(text, values);
+async function createUserWithRecord(name, record) {
+    const text   = `INSERT INTO users(name, record) VALUES($1, $2) RETURNING *`;
+    const values = [name, record];
+    const res    = await pool.query(text, values);
     return res.rows[0];
 }
 
@@ -56,8 +49,7 @@ async function getUserRank(name) {
 }
 
 module.exports = {
-    createUser,
-    addRecordToUser,
+    createUserWithRecord,
     getTop10,
     getRecordByName,
     getUserRank,

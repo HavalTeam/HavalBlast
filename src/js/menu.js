@@ -7,15 +7,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const closePopupBtns = document.querySelectorAll('.close-popup');
     const nameDisplay = document.getElementById('current-user-name');
     const savedName = localStorage.getItem('userName') || '';
-    let preventStart;
-    if (savedName) {
-        nameDisplay.textContent = savedName;
-        preventStart = false;
-    } else {
-        nameDisplay.textContent = '';
-        preventStart = true;
-    }
-
     const leaderboardEl = document.getElementById('leaderboard');
     const userRecordEl = document.getElementById('user-record');
     const highScore = localStorage.getItem('highScore') || 0;
@@ -32,27 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         leaderboardEl.appendChild(li);
     });
 
-    if (savedName) {
-        const userScore = await (await fetch('/api/users/getRecord', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: savedName })
-            })
-        ).json();
-
-        const userPlace = await (await fetch('/api/users/getRank', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: savedName })
-            })
-        ).json();
-
-        userRecordEl.textContent =
-            `Ваше место: ${userPlace.rank}  Ваш рекорд: ${userScore.record}`;
-    }
-
-
-
+    userRecordEl.textContent = `Ваш рекорд: ${highScore}`;
 
 
     startGameBtn.addEventListener('click', () => {

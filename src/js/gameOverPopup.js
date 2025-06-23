@@ -39,7 +39,11 @@ class GameOverPopup {
                 return;
             }
 
-            localStorage.setItem('userName', name);
+            fetch('/api/users/addUser', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name: name, record: this.gm.getScore()}),
+            }).then(response => {})
             nameDisplay.textContent = name;
 
         });
