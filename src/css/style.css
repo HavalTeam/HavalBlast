@@ -43,15 +43,21 @@ body {
     height: 25%;
     width: 100%;
     display: flex;
-    justify-content:space-evenly;
+    justify-content:center;
     align-items: center;
     overflow: hidden;
     border-radius: 15px;
-    /* background-color: rgb(38, 71, 154); */
 }
 
-/* Уменьшаем размер блоков в контейнере "руки" до 0.5 от исходного размера */
-#blocks-container > div {
+#blocks-container .slot {
+    flex: 0 0 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#blocks-container .slot > div {
     transform: scale(0.75);
     transform-origin: center;
 }

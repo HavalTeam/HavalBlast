@@ -1,12 +1,12 @@
 class LeftTopBlock extends Block {
-    constructor(gm, forBg = false) {
+    constructor(gm, handNum, forBg = false) {
         super(gm, forBg);
         this.type = blockType.LEFT_TOP;
         this.sizeX = 50 * 3;
         this.sizeY = 50 * 3;
 
         this.blockDiv.classList.add('three-three-block');
-        this.spawnBlock(5);
+        this.spawnBlock(5, handNum);
     }
 
     _addBuildingBlocks(amount) {

@@ -1,5 +1,9 @@
 class Block {
     constructor(gm, forBg = false) {
+        this.gm = gm;
+        this.forBg = forBg;
+        this._handScale = 0.75;
+        this._homeSlot = null;
         
         this.blockDiv = document.createElement('div');
         this.blockDiv.setAttribute('draggable', 'false');
@@ -11,15 +15,16 @@ class Block {
         }
 
         this.blocksContainer = document.getElementById('blocks-container');
-        this.gm = gm;
 
         this.x = null;
         this.y = null;
 
         this.blockDiv.addEventListener('mousedown', (event) => {
+            this.blockDiv.style.transition = 'transform 0.2s ease-out';
+            this.blockDiv.style.transform = 'scale(1)';
+            
             this.blockDiv.style.position = 'absolute';
             this.blockDiv.style.zIndex = 2;
-            this.blockDiv.style.transform = 'scale(1)';
             this.gm.selected = this;
 
             const x = event.clientX;
@@ -33,15 +38,14 @@ class Block {
         this.blockDiv.addEventListener('mouseup', () => {
             const landed = gm.canLand(this);
             if (landed) {
+                gm.handBlocks.splice(gm.handBlocks.indexOf(this), 1);
+                gm.selected = null;
                 gm.handCounter--;
-
+                
                 const points = this.blockDiv.children.length * 10;
                 gm.addScore(points);
-                
                 document.getElementById('current-score').textContent = gm.getScore();
 
-                gm.handBlocks.splice(gm.handBlocks.indexOf(this), 1);
-                console.log(gm.handBlocks);
                 if(gm.checkGameOver()) {
                     const gameOverPopup = document.getElementById('game-over-popup');
                     const finalScore = document.getElementById('final-score');
@@ -60,20 +64,91 @@ class Block {
                 }, 1);
                 
             } else {
-                this.blockDiv.style.position = 'relative';
-                this.blockDiv.style.top = 'auto';
-                this.blockDiv.style.left = 'auto';
-                this.blockDiv.style.zIndex = 1;
-                this.blockDiv.style.transform = 'scale(0.75)';
-            }
+
+
+
+
+            // Плавный возврат в «домашний» слот с анимацией возврата и масштабом
+    const scale = this._handScale;
+    const slotRect = this.blockDiv.parentElement.getBoundingClientRect();
+    const sizeX = this.sizeX * scale;
+    const sizeY = this.sizeY * scale;
+    const targetLeft = slotRect.left + (slotRect.width  - sizeX) / 2;
+    const targetTop  = slotRect.top  + (slotRect.height - sizeY) / 2;
+
+    const startRect = this.blockDiv.getBoundingClientRect();
+    const startLeft = startRect.left;
+    const startTop  = startRect.top;
+
+    // Переводим в absolute и убираем прежний transition
+    Object.assign(this.blockDiv.style, {
+        position:   'absolute',
+        transition: 'none'
+    });
+
+    // Запускаем анимацию Web Animations API
+    const anim = this.blockDiv.animate([
+        {
+            top:       `${startTop}px`,
+            left:      `${startLeft}px`,
+            transform: 'scale(1)'
+        },
+        {
+            top:       `${targetTop}px`,
+            left:      `${targetLeft}px`,
+            transform: `scale(${scale})`
+        }
+    ], {
+        duration: 200,
+        easing:   'ease-out',
+        fill:     'forwards'
+    });
+
+    anim.onfinish = () => {
+        // Отменяем animation, чтобы применить inline-стили
+        anim.cancel();
+        Object.assign(this.blockDiv.style, {
+            position:  'relative',
+            top:       'auto',
+            left:      'auto',
+            transform: `scale(${scale})`
+        });
+    };
+    }
+
+
+
+
+            
             this.gm.selected = null;
         });
     }
 
 
-    spawnBlock(amount) {
+    spawnBlock(amount, handNum) {
         this._addBuildingBlocks(amount);
-        this.blocksContainer.appendChild(this.blockDiv);
+        
+        if (this.forBg) {
+            this.blocksContainer.appendChild(this.blockDiv);
+            return;
+        }
+
+        Object.assign(this.blockDiv.style, {
+            transform: `translateY(100vh) scale(${this._handScale})`,
+            opacity: '0',
+            transition: 'transform 0.6s ease-out, opacity 0.6s ease-out'
+        });
+
+
+        const slot = document.getElementById(`slot-${handNum}`);
+        this._homeSlot = slot;
+        slot.appendChild(this.blockDiv);
+
+
+        requestAnimationFrame(() => {
+            this.blockDiv.style.transform = `translateY(0) scale(${this._handScale})`;
+            this.blockDiv.style.opacity = '1';
+        });
     }
 
 
@@ -113,4 +188,5 @@ class Block {
             topBorderColor,
         };
     }
+
 }

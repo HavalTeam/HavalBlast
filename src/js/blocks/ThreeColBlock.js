@@ -1,12 +1,12 @@
 class ThreeColBlock extends Block {
-    constructor(gm, forBg = false) {
+    constructor(gm, handNum, forBg = false) {
         super(gm, forBg);
         this.type = blockType.THREE_COL;
         this.sizeX = 50;
         this.sizeY = 50 * 3;
 
         this.blockDiv.classList.add('one-three-block');
-        this.spawnBlock(3);
+        this.spawnBlock(3, handNum);
     }
 
     _addBuildingBlocks(amount) {

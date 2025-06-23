@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const forMenu = document.getElementById('main-menu');
     function spawnBg() {
         const constr = CLASSES[Math.floor(Math.random() * CLASSES.length)];
-        const block = new constr(null, forBg = true);
+        const block = new constr(null, -1, true);
 
         let scale;
         let duration;

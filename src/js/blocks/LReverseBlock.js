@@ -1,12 +1,12 @@
 class LReverseBlock extends Block {
-    constructor(gm, forBg = false) {
+    constructor(gm, handNum, forBg = false) {
         super(gm, forBg);
         this.type = blockType.L_REVERSE;
         this.sizeX = 50 * 2;
         this.sizeY = 50 * 3;
         
         this.blockDiv.classList.add('l-block', 'reverse')
-        this.spawnBlock(4);
+        this.spawnBlock(4, handNum);
     }
 
     getBlockCoords(cellJ, cellI) {

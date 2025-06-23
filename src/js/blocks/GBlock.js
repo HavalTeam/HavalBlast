@@ -1,12 +1,12 @@
 class GBlock extends Block {
-    constructor(gm, forBg = false) {
+    constructor(gm, handNum, forBg = false) {
         super(gm, forBg);
         this.type = blockType.G;
         this.sizeX = 50 * 2;
         this.sizeY = 50 * 3;
         
         this.blockDiv.classList.add('g-block')
-        this.spawnBlock(4);
+        this.spawnBlock(4, handNum);
     }
 
     getBlockCoords(cellJ, cellI) {

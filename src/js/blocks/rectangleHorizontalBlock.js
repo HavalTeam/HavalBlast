@@ -1,12 +1,12 @@
 class RectangleHorizontalBlock extends Block {
-    constructor(gm, forBg = false) {
+    constructor(gm, handNum, forBg = false) {
         super(gm, forBg);
         this.type = blockType.RECTANGLE_HORIZONTAL;
         this.sizeX = 50 * 3;
         this.sizeY = 50 * 2;
         
         this.blockDiv.classList.add('rectangle-horizontal-block')
-        this.spawnBlock(6);
+        this.spawnBlock(6, handNum);
     }
 
     getBlockCoords(cellJ, cellI) {

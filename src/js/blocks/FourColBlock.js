@@ -1,12 +1,12 @@
 class FourColBlock extends Block {
-    constructor(gm, forBg = false) {
+    constructor(gm, handNum, forBg = false) {
         super(gm, forBg);
         this.type = blockType.FOUR_COL;
         this.sizeX = 50;
         this.sizeY = 50 * 4;
 
         this.blockDiv.classList.add('one-four-block');
-        this.spawnBlock(4);
+        this.spawnBlock(4, handNum);
     }
 
     _addBuildingBlocks(amount) {

@@ -85,7 +85,7 @@ class GameManager {
     _fillHand() {
         for (let i = 0; i < 3; i++) {
             const constr = this._chooseRandomBlock();
-            const newBlock = new constr(this);
+            const newBlock = new constr(this, i);
             this.handBlocks.push(newBlock);
         }
         this._handCounter = 3;

@@ -1,12 +1,12 @@
 class CubeBlock extends Block {
-    constructor(gm, forBg = false) {
+    constructor(gm, handNum, forBg = false) {
         super(gm, forBg);
         this.type = blockType.CUBE;
         this.sizeX = 50 * 3;
         this.sizeY = 50 * 3;
         
         this.blockDiv.classList.add('cube-block')
-        this.spawnBlock(9);
+        this.spawnBlock(9, handNum);
     }
 
     getBlockCoords(cellJ, cellI) {

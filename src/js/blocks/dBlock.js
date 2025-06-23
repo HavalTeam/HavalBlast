@@ -1,12 +1,12 @@
 class DBlock extends Block {
-    constructor(gm, forBg = false) {
+    constructor(gm, handNum, forBg = false) {
         super(gm, forBg);
         this.type = blockType.D;
         this.sizeX = 50 * 3;
         this.sizeY = 50 * 2;
 
         this.blockDiv.classList.add('three-two-block');
-        this.spawnBlock(4);
+        this.spawnBlock(4, handNum);
     }
 
     _addBuildingBlocks(amount) {

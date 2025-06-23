@@ -1,12 +1,12 @@
 class SquareBlock extends Block {
-    constructor(gm, forBg = false) {
+    constructor(gm, handNum, forBg = false) {
         super(gm, forBg);
         this.type = blockType.SQUARE;
         this.sizeX = 50 * 2;
         this.sizeY = 50 * 2;
 
         this.blockDiv.classList.add('square-block')
-        this.spawnBlock(4);
+        this.spawnBlock(4, handNum);
     }
 
     getBlockCoords(cellJ, cellI) {

@@ -1,12 +1,12 @@
 class RectangleVerticalBlock extends Block {
-    constructor(gm, forBg = false) {
+    constructor(gm, handNum, forBg = false) {
         super(gm, forBg);
         this.type = blockType.RECTANGLE_VERTICAL;
         this.sizeX = 50 * 2;
         this.sizeY = 50 * 3;
         
         this.blockDiv.classList.add('rectangle-vertical-block')
-        this.spawnBlock(6);
+        this.spawnBlock(6, handNum);
     }
 
     getBlockCoords(cellJ, cellI) {
