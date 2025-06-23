@@ -51,6 +51,11 @@ class GameManager {
                 this.selected.blockDiv.style.left = `${x - this.selected.sizeX / 2}px`;
             }
         })
+
+        document.getElementById('to-main-menu')
+            .addEventListener('click', () => {
+                window.location.href = 'index.html';
+            })
     }
 
     get handCounter() {
