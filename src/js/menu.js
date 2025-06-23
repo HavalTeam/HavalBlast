@@ -7,14 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const closePopupBtns = document.querySelectorAll('.close-popup');
     const nameDisplay = document.getElementById('current-user-name');
     const savedName = localStorage.getItem('userName') || '';
-    let preventStart;
-    if (savedName) {
-        nameDisplay.textContent = savedName;
-        preventStart = false;
-    } else {
-        nameDisplay.textContent = '';
-        preventStart = true;
-    }
+
 
     const leaderboardEl = document.getElementById('leaderboard');
     const userRecordEl = document.getElementById('user-record');
