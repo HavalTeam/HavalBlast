@@ -34,7 +34,7 @@ class GameManager {
             return;
         }
 
-        this._map = new Map(); 
+        this.map = new Map(); 
         this.selected = null;
         this.handBlocks = [];
 
@@ -71,11 +71,11 @@ class GameManager {
 
 
     canLand(block) {
-        return this._map.canPlace(block, block.x, block.y, block.sizeX, block.sizeY, block.blockColors);
+        return this.map.canPlace(block, block.x, block.y, block.sizeX, block.sizeY);
     }
 
     checkGameOver() {
-        return this._map.checkGameOver(this.handBlocks);
+        return this.map.checkGameOver(this.handBlocks);
     }
 
     _chooseRandomBlock() {

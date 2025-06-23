@@ -16,14 +16,21 @@ class Map {
     }
     
 
-    canPlace(block, x, y, sizeX, sizeY, colors) {
-        const [nearestCellRect, cellJ, cellI] = this._findNearestCell(x, y, sizeX, sizeY);
-        if (nearestCellRect === null) {
-            return false;
+    canPlace(block, x, y, sizeX, sizeY) {
+        const [cellRect, j, i] = this._findNearestCell(x, y, sizeX, sizeY);
+        if (!cellRect) {
+            return null;
         }
-        
-        const coords = block.getBlockCoords(cellJ, cellI);
-        return this._placedBlock(block, coords, colors);
+
+        const coords = block.getBlockCoords(j, i);
+        return this._checkEmptyPlace(coords) ? { cellRect, coords } : null;
+    }
+
+    paintCells(coords, colors) {
+        for (const [j, i] of coords) {
+            this._occupyCell(j, i, colors);
+        }
+        this._clearIfCan();
     }
 
     checkGameOver(handBlocks) {
@@ -38,18 +45,6 @@ class Map {
             }
         }
         return true;
-    }
-
-    _placedBlock(block, coords, colors) {
-        if (this._checkEmptyPlace(coords)) {
-            for (let [j, i] of coords) {
-                this._occupyCell(j, i, colors);
-            }
-            this._clearIfCan();
-            return true;
-        } else {
-            return false;
-        }
     }
 
     _findNearestCell(x, y, sizeX, sizeY) {

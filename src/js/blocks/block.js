@@ -78,13 +78,66 @@ class Block {
             return;
         }
 
-        const landed = this.gm.canLand(this);
-        if (landed) {
-            this._commitPlacement();
+        this._placementInfo = this.gm.canLand(this);
+
+        if (this._placementInfo) {
+            this._landToGrid(this._placementInfo.cellRect);  
         } else {
             this._returnToSlot();
         }
         this.gm.selected = null;
+    }
+
+
+    _landToGrid(cellRect) {
+        this._isAnimating = true;
+
+        const start = this.blockDiv.getBoundingClientRect();
+        const targetLeft = cellRect.left;
+        const targetTop  = cellRect.top;
+
+        Object.assign(this.blockDiv.style, {
+            position: 'absolute',
+            transition: 'none',
+            zIndex: 2
+        });
+
+        const anim = this.blockDiv.animate([
+            { top: `${start.top}px`,  left: `${start.left}px`},
+            { top: `${targetTop}px`, left: `${targetLeft}px`}
+        ], {
+            duration: 250,
+            easing:   'ease-out',
+            fill:     'forwards'
+        });
+
+        anim.onfinish = () => {
+            const { coords } = this._placementInfo;
+            this.gm.map.paintCells(coords, this.blockColors);
+            this._placementInfo = null;
+
+            const buildingBlocks = Array.from(this.blockDiv.children);
+
+            const anims = buildingBlocks.map((bb, idx) =>
+                bb.animate(
+                [
+                    { transform: 'scale(1)' },
+                    { transform: 'scale(0.05)' }
+                ],
+                {
+                    duration: 180,
+                    easing:   'ease-in',
+                    fill:     'forwards',
+                    delay: idx * 30
+                }
+                )
+            );
+
+            Promise.all(anims.map(a => a.finished))
+                .then(() => {
+                    this._commitPlacement();
+                });
+        };
     }
 
 
@@ -99,6 +152,7 @@ class Block {
         if (this.gm.checkGameOver()) {
             this._showGameOver();
         }
+        this._isAnimating = false;
     }
 
 
