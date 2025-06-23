@@ -29,24 +29,28 @@ class Block {
             return;
         }
 
+
+        const slot = document.getElementById(`slot-${handNum}`);
+        this._homeSlot = slot;
+        slot.appendChild(this.blockDiv);
+
         Object.assign(this.blockDiv.style, {
             transform: `translateY(100vh) scale(${this._handScale})`,
             opacity: '0',
             transition: 'transform 0.6s ease-out, opacity 0.6s ease-out'
         });
 
-
-        const slot = document.getElementById(`slot-${handNum}`);
-        this._homeSlot = slot;
-        slot.appendChild(this.blockDiv);
-
+        this.blockDiv.getBoundingClientRect();
 
         requestAnimationFrame(() => {
-            this.blockDiv.style.transform = `translateY(0) scale(${this._handScale})`;
+            this.blockDiv.style.transition =
+            'transform 0.5s ease-out, opacity 0.5s ease-out';
+
+            this.blockDiv.style.transform =
+            `translateY(0) scale(${this._handScale})`;
             this.blockDiv.style.opacity = '1';
         });
     }
-
 
     _attachEventListeners() {
         this.blockDiv.addEventListener('mousedown', this._onMouseDown.bind(this));
@@ -143,7 +147,10 @@ class Block {
 
     _commitPlacement() {
         this.gm.handBlocks.splice(this.gm.handBlocks.indexOf(this), 1);
-        this.gm.selected = null;
+        if (this.gm.selected === this) {
+            this.gm.selected = null;
+        }
+
         this.gm.handCounter--;
         this._updateScore();
 

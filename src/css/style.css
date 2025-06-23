@@ -31,7 +31,8 @@ body {
     border-bottom-color: rgb(75, 94, 150);
     border-right-color: rgb(59, 73, 122);
     border-left-color: rgb(54, 72, 122);
-    border-top-color: rgb(43, 61, 111);;
+    border-top-color: rgb(43, 61, 111);
+    background-color: rgb(30, 42, 77);
 }
 
 .grid-item {
@@ -282,4 +283,14 @@ body {
     overflow: hidden;
     pointer-events: none;
     z-index: -1;
+}
+
+@keyframes lineClear {
+    0%   { transform: scale(1); opacity: 1; }
+    50%  { transform: scale(1.15);opacity: 1; filter: brightness(1.5)}
+    100% { transform: scale(0); opacity: 0; }
+}
+
+.line-clear {
+    animation: lineClear 0.4s ease-out forwards;
 }

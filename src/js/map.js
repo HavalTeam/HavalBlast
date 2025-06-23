@@ -104,15 +104,19 @@ class Map {
         for (let [x, y] of toClear) {
             this._cellsStateMatrix[y][x] = 0;
             const cell = document.getElementById(`cell-${x}-${y}`);
-            cell.style.backgroundColor = 'rgb(30, 42, 77)';
 
-            setTimeout(() => {
-                cell.classList.remove('building-block-grid');
+            const delay = (x + y) * 40;
+            cell.style.animationDelay = `${delay}ms`;
+            cell.classList.add('line-clear');
+
+
+            cell.addEventListener('animationend', () => {
+                cell.className = 'grid-item';
                 cell.style.borderWidth = '1px';
-                cell.style.borderColor = 'rgba(0, 0, 0, 0.266)';
-            }, 100);
+                cell.style.borderColor = 'rgba(0,0,0,0.266)';
+                cell.style.backgroundColor = 'rgb(30, 42, 77)';
+            }, { once: true });
         }
-
     }
 
 
