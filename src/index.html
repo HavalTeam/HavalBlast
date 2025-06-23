@@ -13,6 +13,20 @@
     <div id="main-menu">
         <div class="menu-items-wrapper">
             <img class="logo" src="images/logo.png">
+
+            <div class="user-name-block">
+            <p>Текущий игрок: <span id="current-user-name"></span></p>
+            <form id="user-name-form">
+                <input
+                type="text"
+                id="user-name-input"
+                placeholder="Введите имя"
+                autocomplete="off"
+                />
+                <button type="submit" class="menu-btn">Сохранить</button>
+            </form>
+            </div>
+
             <div class="menu-items">
                 <button class="menu-btn start-game-btn">Начать игру</button>
                 <button class="menu-btn records-btn">Рекорды</button>

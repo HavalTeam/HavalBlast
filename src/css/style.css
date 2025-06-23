@@ -207,7 +207,7 @@ body {
     height: 30%;
     width: 100%;
     
-    margin-top: 80px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -216,16 +216,16 @@ body {
 
 .menu-btn {
     height: 70px;
-    width: 50%;
+    width: 40%;
     border-radius: 20px;
-    background-color: #270d75;
+    background-color: #321197;
     font-family: 'Rubic', serif;
     font-size: 25px;
-    color:white
+    color:white;
 }
 
 .menu-btn:hover {
-    background-color: #3d16b4;
+    background-color: #4f1de5;
 }
 
 .popup {
@@ -238,6 +238,10 @@ body {
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+}
+
+#game-over-popup {
     transition: opacity 1s ease-out, visibility 1s ease-out;
 }
 
@@ -324,3 +328,35 @@ body {
     animation: lineClear 0.4s ease-out forwards;
 }
 
+
+.user-name-block {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.user-name-block p{
+    font-family: 'Rubic', serif;
+    font-size: 20px;
+    color: white;
+}
+
+#user-name-input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+  font-size: 18px;
+}
+
+.user-name-block .menu-btn{
+    font-size: 16px;
+}
+
+#user-name-input.error {
+  animation: blink-red 0.3s ease-in-out 3;
+  border-color: #e74c3c;
+}
+
+@keyframes blink-red {
+  0%, 100% { border-color: #e74c3c; }
+  50%     { border-color: transparent; }
+}
