@@ -34,7 +34,7 @@ document.addEventListener('gm:ready', async () => {
         if (forMenu) {
             const anim = block.blockDiv.animate([
                 { transform: `translateY(-100px)` },
-                { transform: `translateY(110vh)` }
+                { transform: `translateY(120vh)` }
             ], {
                 duration,
                 easing: 'linear',
