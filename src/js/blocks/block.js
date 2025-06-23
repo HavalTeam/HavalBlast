@@ -4,124 +4,20 @@ class Block {
         this.forBg = forBg;
         this._handScale = 0.75;
         this._homeSlot = null;
-        
-        this.blockDiv = document.createElement('div');
-        this.blockDiv.setAttribute('draggable', 'false');
-        this.blockDiv.addEventListener('dragstart', e => e.preventDefault());
-
-        if (forBg) {
-            this.blocksContainer = document.getElementById('bg-blocks-container');
-            return;
-        }
-
-        this.blocksContainer = document.getElementById('blocks-container');
+        this._isAnimating = false;
 
         this.x = null;
         this.y = null;
 
-        this.blockDiv.addEventListener('mousedown', (event) => {
-            this.blockDiv.style.transition = 'transform 0.2s ease-out';
-            this.blockDiv.style.transform = 'scale(1)';
-            
-            this.blockDiv.style.position = 'absolute';
-            this.blockDiv.style.zIndex = 2;
-            this.gm.selected = this;
+        this.blockDiv = document.createElement('div');
+        this.blockDiv.setAttribute('draggable', 'false');
+        this.blockDiv.addEventListener('dragstart', e => e.preventDefault());
 
-            const x = event.clientX;
-            const y = event.clientY;
-            this.x = x;
-            this.y = y;
-            this.blockDiv.style.top = `${y - this.sizeY / 2}px`;
-            this.blockDiv.style.left = `${x - this.sizeX / 2}px`;
-        });
-
-        this.blockDiv.addEventListener('mouseup', () => {
-            const landed = gm.canLand(this);
-            if (landed) {
-                gm.handBlocks.splice(gm.handBlocks.indexOf(this), 1);
-                gm.selected = null;
-                gm.handCounter--;
-                
-                const points = this.blockDiv.children.length * 10;
-                gm.addScore(points);
-                document.getElementById('current-score').textContent = gm.getScore();
-
-                if(gm.checkGameOver()) {
-                    const gameOverPopup = document.getElementById('game-over-popup');
-                    const finalScore = document.getElementById('final-score');
-                    const restartBtn = document.getElementById('restart-game-btn');
-
-                    finalScore.textContent = gm.getScore();
-                    gameOverPopup.style.display = 'block';
-
-                    restartBtn.addEventListener('click', () => {
-                        window.location.reload();
-                    });
-                }
-
-                setTimeout(() => {
-                    this.blockDiv.remove();
-                }, 1);
-                
-            } else {
-
-
-
-
-            // Плавный возврат в «домашний» слот с анимацией возврата и масштабом
-    const scale = this._handScale;
-    const slotRect = this.blockDiv.parentElement.getBoundingClientRect();
-    const sizeX = this.sizeX * scale;
-    const sizeY = this.sizeY * scale;
-    const targetLeft = slotRect.left + (slotRect.width  - sizeX) / 2;
-    const targetTop  = slotRect.top  + (slotRect.height - sizeY) / 2;
-
-    const startRect = this.blockDiv.getBoundingClientRect();
-    const startLeft = startRect.left;
-    const startTop  = startRect.top;
-
-    // Переводим в absolute и убираем прежний transition
-    Object.assign(this.blockDiv.style, {
-        position:   'absolute',
-        transition: 'none'
-    });
-
-    // Запускаем анимацию Web Animations API
-    const anim = this.blockDiv.animate([
-        {
-            top:       `${startTop}px`,
-            left:      `${startLeft}px`,
-            transform: 'scale(1)'
-        },
-        {
-            top:       `${targetTop}px`,
-            left:      `${targetLeft}px`,
-            transform: `scale(${scale})`
+        if (!forBg) {
+            this._attachEventListeners();
+        } else {
+            this.blocksContainer = document.getElementById('bg-blocks-container');
         }
-    ], {
-        duration: 200,
-        easing:   'ease-out',
-        fill:     'forwards'
-    });
-
-    anim.onfinish = () => {
-        // Отменяем animation, чтобы применить inline-стили
-        anim.cancel();
-        Object.assign(this.blockDiv.style, {
-            position:  'relative',
-            top:       'auto',
-            left:      'auto',
-            transform: `scale(${scale})`
-        });
-    };
-    }
-
-
-
-
-            
-            this.gm.selected = null;
-        });
     }
 
 
@@ -152,6 +48,125 @@ class Block {
     }
 
 
+    _attachEventListeners() {
+        this.blockDiv.addEventListener('mousedown', this._onMouseDown.bind(this));
+        this.blockDiv.addEventListener('mouseup',   this._onMouseUp.bind(this));
+    }
+
+
+    _onMouseDown(event) {
+        if (this._isAnimating) {
+            return;
+        }
+
+        this.blockDiv.style.transition = 'transform 0.2s ease-out';
+        this.blockDiv.style.transform = 'scale(1)';
+        
+        this.blockDiv.style.position = 'absolute';
+        this.blockDiv.style.zIndex = 2;
+        this.gm.selected = this;
+
+        this.x = event.clientX;
+        this.y = event.clientY;
+        this.blockDiv.style.top  = `${this.y - this.sizeY/2}px`;
+        this.blockDiv.style.left = `${this.x - this.sizeX/2}px`;
+    }
+
+
+    _onMouseUp() {
+        if (this._isAnimating) {
+            return;
+        }
+
+        const landed = this.gm.canLand(this);
+        if (landed) {
+            this._commitPlacement();
+        } else {
+            this._returnToSlot();
+        }
+        this.gm.selected = null;
+    }
+
+
+    _commitPlacement() {
+        this.gm.handBlocks.splice(this.gm.handBlocks.indexOf(this), 1);
+        this.gm.selected = null;
+        this.gm.handCounter--;
+        this._updateScore();
+
+        setTimeout(() => this.blockDiv.remove(), 1);
+
+        if (this.gm.checkGameOver()) {
+            this._showGameOver();
+        }
+    }
+
+
+    _updateScore() {
+        const points = this.blockDiv.children.length * 10;
+        this.gm.addScore(points);
+        document.getElementById('current-score').textContent = this.gm.getScore();
+    }
+
+
+    _showGameOver() {
+        const popup = document.getElementById('game-over-popup');
+        document.getElementById('final-score').textContent = this.gm.getScore();
+        popup.style.display = 'block';
+        document.getElementById('restart-game-btn')
+            .addEventListener('click', () => window.location.reload());
+    }
+
+
+    _returnToSlot() {
+        this._isAnimating = true;
+        const scale = this._handScale;
+        const slotRect = this._homeSlot.getBoundingClientRect();
+
+        const sizeX = this.sizeX * scale;
+        const sizeY = this.sizeY * scale;
+        const targetLeft = slotRect.left + (slotRect.width  - sizeX) / 2;
+        const targetTop  = slotRect.top  + (slotRect.height - sizeY) / 2;
+
+        const startRect = this.blockDiv.getBoundingClientRect();
+        const startLeft = startRect.left;
+        const startTop  = startRect.top;
+
+        Object.assign(this.blockDiv.style, {
+            position:   'absolute',
+            transition: 'none'
+        });
+
+        const anim = this.blockDiv.animate([
+            {
+                top:       `${startTop}px`,
+                left:      `${startLeft}px`,
+                transform: 'scale(1)'
+            },
+            {
+                top:       `${targetTop}px`,
+                left:      `${targetLeft}px`,
+                transform: `scale(${scale})`
+            }
+        ], {
+            duration: 200,
+            easing:   'ease-out',
+            fill:     'forwards'
+        });
+
+        anim.onfinish = () => {
+            anim.cancel();
+            Object.assign(this.blockDiv.style, {
+                position:  'relative',
+                top:       'auto',
+                left:      'auto',
+                transform: `scale(${scale})`
+            });
+            this._isAnimating = false;
+        };
+    }
+
+
     _addBuildingBlocks(amount) {
         this.blockColors = this._getRandomColor();
         for (let i = 0; i < amount; i++) {
@@ -168,6 +183,7 @@ class Block {
         }
     }
 
+    
     _getRandomColor() {
         const mainColorRGB = blockColors[Math.floor(Math.random() * blockColors.length)];
         
