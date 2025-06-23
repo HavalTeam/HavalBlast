@@ -12,10 +12,16 @@
     <div id="bg-blocks-container"></div>
 
     <div id="window-container">
-        <div id="score-display">
-            Счет: <span id="current-score">0</span>
+        <div class="hud">
+            <div id="score-display">
+                Счет: <span id="current-score">0</span>
+            </div>
+            <button id="to-main-menu" class="menu-btn">
+                <img src="./images/house.png">
+            </button>
         </div>
 
+        
         <div id="grid-container"></div>
 
         <div id="blocks-container">
@@ -29,6 +35,22 @@
         <div class="popup-content">
             <h2>Игра окончена</h2>
             <img src="./images/sad_tetris.png">
+
+            <div class="user-name-block">
+                <p>Записать результат<span id="current-user-name"></span></p>
+                <form id="user-name-form">
+                    <input
+                        type="text"
+                        id="user-name-input"
+                        placeholder="Введите имя"
+                        autocomplete="off"
+                    />
+                    <button type="submit" class="menu-btn">
+                        <img src="./images/save.png">
+                    </button>
+                </form>
+            </div>
+
             <p class="final-score">Ваш счет: <span id="final-score-num">0</span></p>
             <p class="best-score">Лучший счет: <span id="best-score-num">0</span></p>
             <button id="restart-game-btn" class="menu-btn">Начать заново</button>
