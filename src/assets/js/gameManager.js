@@ -54,7 +54,7 @@ class GameManager {
 
         document.getElementById('to-main-menu')
             .addEventListener('click', () => {
-                window.location.href = 'index.html';
+                window.location.href = '/';
             })
     }
 
