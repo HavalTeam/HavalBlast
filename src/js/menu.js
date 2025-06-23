@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     topRecords.forEach((record, index) => {
         const li = document.createElement('li');
-        li.textContent = `${index + 1}. ${record.name} — ${record.record}`;
+        li.textContent = `${record.name} — ${record.record}`;
         leaderboardEl.appendChild(li);
     });
 
